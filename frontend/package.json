@@ -13,7 +13,7 @@
     "@reown/appkit": "^1.8.19",
     "@reown/appkit-adapter-ethers": "^1.8.19",
     "ethers": "^6.16.0",
-    "fhevmjs": "^0.6.2",
+    "fhevmjs": "^0.7.0-7",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },

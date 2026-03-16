@@ -1,14 +1,17 @@
 import { initFhevm as initWasm, createInstance } from "fhevmjs";
 
-// These addresses MUST match SepoliaZamaFHEVMConfig in the contract
+// Must match SepoliaZamaFHEVMConfig in the contract (fhevm@0.6.2 / 0.7.0-0)
 const ACL_ADDRESS = "0xFee8407e2f5e3Ee68ad77cAE98c434e637f516e5";
 const KMS_ADDRESS = "0x9D6891A6240D6130c54ae243d8005063D05fE14b";
 const RELAYER_URL = "https://relayer.testnet.zama.org/v2/";
 const NETWORK_URL = "https://sepolia.gateway.tenderly.co/1cAYJQS9HFGwg8eKrTkjdj";
 
-// The live relayer API returns camelCase but fhevmjs@0.6.2 expects snake_case.
-// Patch window.fetch to normalise the keyurl response before fhevmjs parses it.
+// The live relayer API returns camelCase but fhevmjs expects snake_case.
+// Patch window.fetch to normalise keyurl responses before the SDK parses them.
+let fetchPatched = false;
 function patchFetch() {
+  if (fetchPatched) return;
+  fetchPatched = true;
   const _fetch = window.fetch.bind(window);
   window.fetch = async function (input, init) {
     const url = typeof input === "string" ? input : input?.url ?? "";
@@ -61,7 +64,7 @@ export async function initFhevm() {
     kmsContractAddress: KMS_ADDRESS,
     aclContractAddress: ACL_ADDRESS,
     networkUrl: NETWORK_URL,
-    gatewayUrl: RELAYER_URL,
+    relayerUrl: RELAYER_URL,
   });
   return instance;
 }
