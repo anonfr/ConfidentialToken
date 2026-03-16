@@ -2,9 +2,9 @@
 pragma solidity ^0.8.24;
 
 import "fhevm/lib/TFHE.sol";
+import "fhevm/gateway/GatewayCaller.sol";
 import "fhevm/config/ZamaFHEVMConfig.sol";
 import "fhevm/config/ZamaGatewayConfig.sol";
-import "fhevm/gateway/GatewayCaller.sol";
 
 /// @title ConfidentialERC20
 /// @notice ERC-20 token with fully encrypted balances using Zama's fhEVM.
