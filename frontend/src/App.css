@@ -273,6 +273,23 @@ nav {
   background: var(--yellow-dim);
 }
 
+/* ── Wallet button ── */
+.wallet-btn {
+  padding: 0.45rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-family: inherit;
+  background: var(--yellow);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.wallet-btn:hover { background: var(--yellow-hover); }
+
 /* ── Buttons ── */
 .btn {
   display: block;

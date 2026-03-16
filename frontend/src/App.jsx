@@ -3,6 +3,7 @@ import { Contract, BrowserProvider } from "ethers";
 import {
   useAppKitAccount,
   useAppKitProvider,
+  useAppKit,
 } from "@reown/appkit/react";
 import { setAppKitTheme } from "./web3modal";
 import { initFhevm, getFhevmInstance } from "./fhevm";
@@ -38,6 +39,7 @@ const STEPS = {
 function App() {
   const { address, isConnected } = useAppKitAccount();
   const { walletProvider } = useAppKitProvider("eip155");
+  const { open } = useAppKit();
 
   const [dark, setDark] = useState(() => localStorage.getItem("theme") === "dark");
   const [contract, setContract] = useState(null);
@@ -234,7 +236,11 @@ function App() {
               </svg>
             )}
           </button>
-          <appkit-button />
+          <button className="wallet-btn" onClick={() => open()}>
+            {isConnected
+              ? `${address.slice(0, 6)}...${address.slice(-4)}`
+              : "Connect Wallet"}
+          </button>
         </div>
       </nav>
 
